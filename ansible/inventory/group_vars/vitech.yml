@@ -1,8 +1,4 @@
 ---
 
-ansible_user: artem
-ansible_ssh_user: artem
-ansible_sudo_pass: i8cvf9
-ansible_ssh_pass: i8cvf9
 ssh_users:
   - dev

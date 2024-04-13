@@ -1,6 +1,5 @@
 FROM ubuntu:22.04
 
-
 RUN apt-get update -y \
     && apt-get install -y software-properties-common \
     && add-apt-repository -y ppa:git-core/ppa \
@@ -11,7 +10,6 @@ RUN apt-get update -y \
     unzip \
     cron \
     && rm -rf /var/lib/apt/lists/*
-
 
 RUN mkdir /build && cp /etc/crontab /build
 
