@@ -6,7 +6,7 @@ provider "kubernetes" {
   config_context = "k8s-config"
 }
 
-resource "kubernetes_deployment" "nginx" {
+resource "kubernetes_deployment_v1" "nginx" {
     metadata {
         name = "nginx"
         labels = {
