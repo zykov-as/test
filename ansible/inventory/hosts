@@ -1,0 +1,2 @@
+[vitech]
+vitech.home ansible_host=10.0.0.22

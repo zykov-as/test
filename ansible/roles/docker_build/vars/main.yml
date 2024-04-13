@@ -1,0 +1,4 @@
+---
+
+workdir: dockerdev
+python_modules: [ requests ]

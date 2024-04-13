@@ -1,0 +1,9 @@
+---
+
+- name: vitech
+  hosts: vitech
+  become: yes
+  roles:
+    - ../roles/users
+    - ../roles/base
+    - ../roles/docker_build

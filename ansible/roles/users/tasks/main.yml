@@ -1,0 +1,27 @@
+---
+- name: SSHD | configure sshd
+  lineinfile:
+    path: "/etc/ssh/sshd_config"
+    regex: "^(#)?{{item.key}}"
+    line: "{{item.key}} {{item.value}}"
+    state: present
+  loop:
+    - { key: "PermitRootLogin", value: "no" }
+    - { key: "PasswordAuthentication", value: "no" }
+    - { key: "PubkeyAuthentication", value: "yes" }
+  notify:
+    - restart sshd
+
+- name: USER | create users
+  user:
+    name: "{{ item }}"
+    home: "/home/{{ item }}"
+    shell: /bin/bash
+  loop: "{{ ssh_users }}"
+
+- name: USER | add ssh keys
+  authorized_key:
+    user: "{{ item }}"
+    key: "{{ lookup('file', 'files/keys/{{ item }}.pub') }}"
+    exclusive: yes
+  loop: "{{ ssh_users }}"

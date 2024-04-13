@@ -1,0 +1,15 @@
+---
+
+- name: DOCKER | add docker repo
+  shell: dnf config-manager --add-repo {{ docker_repo_url }}
+
+- name: DOCKER | install packages
+  package:
+    name: "{{ docker_packages }}"
+    state: present
+
+- name: DOCKER | enable docker service
+  systemd_service:
+    name: docker
+    state: started
+    enabled: true

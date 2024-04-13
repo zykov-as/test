@@ -1,0 +1,8 @@
+---
+
+- name: install packages
+  package:
+    name: "{{ base_packages }}"
+    state: present
+
+- include_tasks: docker.yml

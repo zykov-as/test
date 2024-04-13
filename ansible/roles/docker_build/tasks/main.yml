@@ -1,0 +1,22 @@
+---
+
+- name: create dockerdev directory
+  file:
+    path: "/opt/{{ workdir }}"
+    state: directory
+
+- name: copy dockerfile
+  copy:
+    src: Dockerfile
+    dest: "/opt/{{ workdir }}/Dockerfile"
+
+- name: install python module
+  pip:
+    name: "{{ python_modules }}"
+
+- name: build docker image
+  community.docker.docker_image:
+    name: test
+    build:
+      path: "/opt/{{ workdir }}"
+    source: build
